@@ -1,8 +1,8 @@
 public class DataPoint {
     private String label;
-    private DImage data;
+    private double[] data;
 
-    public DataPoint(String label, DImage data) {
+    public DataPoint(String label, double[] data) {
         this.label = label;
         this.data = data;
     }
@@ -15,11 +15,11 @@ public class DataPoint {
         this.label = label;
     }
 
-    public DImage getData() {
+    public double[] getData() {
         return data;
     }
 
-    public void setData(DImage data) {
+    public void setData(double[] data) {
         this.data = data;
     }
 }
