@@ -21,11 +21,7 @@ public class Classifier {
         // TODO: add all points from input to the training data
     }
 
-    public void addTrainingData(String label, DImage img) {
-        addTrainingData(new DataPoint(label, img));
-    }
-
-    public String classify(short[][] pixels) {
+    public String classify(double[] featureVector) {
         if (trainingData.size() == 0) return "no training data";
 
         // TODO: write a k-nearest-neighbor classifier.  Return its prediction of "0" to "9"
@@ -33,11 +29,7 @@ public class Classifier {
         return "no prediction";  // replace this line
     }
 
-    public String classify(DImage img) {
-        return classify(img.getBWPixelGrid());
-    }
-
-    public double distance(short[][] d1, short[][] d2) {
+    public double distance(double[] d1, double[] d2) {
         // TODO:  Use the n-dimensional Euclidean distance formula to find the distance between d1 and d2
 
         return -1;

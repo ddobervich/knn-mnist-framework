@@ -47,7 +47,20 @@ public class InteractiveClassifier extends PApplet {
     }
 
     public void mouseReleased() {
-        prediction = classifier.classify(pixels);
+        prediction = classifier.classify(createVectorFrom(pixels));
+    }
+
+    private double[] createVectorFrom(short[][] pixels) {
+        double[] vector = new double[28*28];
+        int i = 0;
+        for (int r = 0; r < 28; r++) {
+            for (int c = 0; c < 28; c++) {
+                vector[i] = pixels[r][c];
+                i++;
+            }
+        }
+
+        return vector;
     }
 
     private void drawImage(short[][] pixels) {
