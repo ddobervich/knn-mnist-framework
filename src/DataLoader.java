@@ -26,7 +26,7 @@ public class DataLoader {
         return content;
     }
 
-    public static List<DataPoint> createDataSet(String filepath) {
+    public static List<DataPoint> loadMNistData(String filepath) {
         String data = normalizeLineBreaks(readFileAsString(filepath));
         String[] lines = data.split("\n");
 

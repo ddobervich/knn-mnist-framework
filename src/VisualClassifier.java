@@ -2,8 +2,6 @@ import processing.core.PApplet;
 
 import java.util.List;
 
-import static jdk.nashorn.internal.objects.Global.load;
-
 public class VisualClassifier extends PApplet {
     private static final int DISPLAY_WIDTH = 600;
     private static final int DISPLAY_HEIGHT = 600;
@@ -23,8 +21,8 @@ public class VisualClassifier extends PApplet {
         fillWithColor(pixels, (short) 255);
 
         classifier = new Classifier(10);
-        List<DataPoint> training = DataLoader.createDataSet("mnist_train.csv");
-        test = DataLoader.createDataSet("mnist_test.csv");
+        List<DataPoint> training = DataLoader.loadMNistData("mnist_train.csv");
+        test = DataLoader.loadMNistData("mnist_test.csv");
         classifier.addTrainingData(training);
 
         DataPoint frame = test.remove((int)Math.random()*test.size());
@@ -32,7 +30,9 @@ public class VisualClassifier extends PApplet {
     }
 
     private void load(short[][] pixels, DataPoint frame) {
-        short[][] toLoad = frame.getData().getBWPixelGrid();
+        double[] featureVector = frame.getData();
+
+        short[][] toLoad = createPixelArray(featureVector);
 
         for (int r = 0; r < pixels.length; r++) {
             for (int c = 0; c < pixels[0].length; c++) {
@@ -41,6 +41,19 @@ public class VisualClassifier extends PApplet {
         }
 
         prediction = classifier.classify(pixels);
+    }
+
+    private short[][] createPixelArray(double[] featureVector) {
+        short[][] pixels = new short[28][28];
+        int nextLocToCopy = 0;
+
+        for (int r = 0; r < 28; r++) {
+            for (int c = 0; c < 28; c++) {
+                pixels[r][c] = (short)(featureVector[nextLocToCopy]);
+            }
+        }
+
+        return pixels;
     }
 
     private void fillWithColor(short[][] pixels, short val) {

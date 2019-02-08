@@ -20,8 +20,8 @@ public class InteractiveClassifier extends PApplet {
         fillWithColor(pixels, (short) 255);
 
         classifier = new Classifier(10);
-        List<DataPoint> training = DataLoader.createDataSet("mnist_train.csv");
-        List<DataPoint> test = DataLoader.createDataSet("mnist_test.csv");
+        List<DataPoint> training = DataLoader.loadMNistData("mnist_train.csv");
+        List<DataPoint> test = DataLoader.loadMNistData("mnist_test.csv");
         classifier.addTrainingData(training);
         classifier.addTrainingData(test);
     }
