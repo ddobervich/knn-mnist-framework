@@ -111,7 +111,7 @@ public class Classifier {
             }
         }
 
-        return Math.sqrt(sum);
+        return sum;
     }
 
     public void test(List<DataPoint> test) {

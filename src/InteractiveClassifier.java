@@ -42,7 +42,7 @@ public class InteractiveClassifier extends PApplet {
         }
 
         fill(0);
-        stroke(0);
+        stroke(255, 0, 0);    // CHANGE THIS LINE!
         text("Classifier predicts: " + prediction, 30, DISPLAY_HEIGHT - 30);
     }
 

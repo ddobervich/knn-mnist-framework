@@ -12,13 +12,13 @@ public class DataLoader {
 
     public static String readFileAsString(String filepath) {
         ClassLoader classLoader = DataLoader.class.getClassLoader();
-        File file = new File(classLoader.getResource(filepath).getFile());
 
         // Read File Content
         String content = "";
         try {
+            File file = new File(classLoader.getResource(filepath).getFile());
             content = new String(Files.readAllBytes(file.toPath()));
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("FILE NOT FOUND: " + filepath);
             e.printStackTrace();
         }
@@ -44,12 +44,12 @@ public class DataLoader {
             for (int r = 0; r < pixels.length; r++) {
                 for (int c = 0; c < pixels[r].length; c++) {
                     String val = lineData[i];
-                    i++;
                     if (val.equals("0")) {
                         pixels[r][c] = 255;
                     } else {
                         pixels[r][c] = 0;
                     }
+                    i++;
                 }
             }
 
