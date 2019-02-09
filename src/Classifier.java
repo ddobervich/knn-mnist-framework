@@ -56,7 +56,7 @@ public class Classifier {
         }
 
         System.out.println(correct.size() + " correct out of " + test.size());
-        System.out.println(wrong.size() + " correct out of " + test.size());
+        System.out.println(wrong.size() + " wrong out of " + test.size());
         System.out.println("% Error: " + (double) wrong.size() / test.size());
     }
 }
