@@ -6,10 +6,10 @@ import java.util.Set;
 
 public class Classifier {
     private ArrayList<DataPoint> trainingData;
-    private int n;
+    private int k;
 
-    public Classifier(int n) {
-        this.n = n;
+    public Classifier(int k) {
+        this.k = k
         trainingData = new ArrayList<DataPoint>();
     }
 
