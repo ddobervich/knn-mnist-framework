@@ -9,7 +9,7 @@ public class Classifier {
     private int k;
 
     public Classifier(int k) {
-        this.k = k
+        this.k = k;
         trainingData = new ArrayList<DataPoint>();
     }
 
