@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class DataLoader {
@@ -38,6 +40,18 @@ public class DataLoader {
         }
 
         return dataset;
+    }
+
+    public static void splitDataIntoTrainingAndTest(List<DataPoint> allData, List<DataPoint> emptyTrainingList, List<DataPoint> emptyTestList, double percentTraining) {
+        Collections.shuffle(allData);
+        int n = (int)(allData.size()*percentTraining);
+
+        for (int i = 0; i < n; i++) {
+            DataPoint pointForTraining = allData.remove(0);
+            emptyTrainingList.add(pointForTraining);
+        }
+
+        emptyTestList.addAll(allData);
     }
 
     public static List<DataPoint> loadMNistData(String filepath) {
