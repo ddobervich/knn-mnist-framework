@@ -48,15 +48,13 @@ public class DataLoader {
     }
 
     public static void splitDataIntoTrainingAndTest(List<DataPoint> allData, List<DataPoint> emptyTrainingList, List<DataPoint> emptyTestList, double percentTraining) {
-        Collections.shuffle(allData);
-        int n = (int)(allData.size()*percentTraining);
+        Collections.shuffle(allData);   // This randomizes the order of allData
 
-        for (int i = 0; i < n; i++) {
-            DataPoint pointForTraining = allData.remove(0);
-            emptyTrainingList.add(pointForTraining);
-        }
+        // add percentTraining of the elements in allData to emptyTrainingList.
+        // add all the rest of the items to emptyTestList
 
-        emptyTestList.addAll(allData);
+        // NOTE:  percentTraining is between 0 and 1, NOT 0 to 100%.
+        // so, e.g., 0.6 represents 60%.
     }
 
     public static List<DataPoint> loadMNistData(String filepath) {
