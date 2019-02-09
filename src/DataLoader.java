@@ -26,13 +26,26 @@ public class DataLoader {
         return content;
     }
 
-    public static List<DataPoint> loadMNistData(String filepath) {
+    public static List<DataPoint> loadHeartDiseaseData(String filepath) {
         String data = normalizeLineBreaks(readFileAsString(filepath));
         String[] lines = data.split("\n");
 
         // create storage for data
         ArrayList<DataPoint> dataset = new ArrayList<>();
 
+        for (int a = 0; a < lines.length; a++) {
+            // TODO: create DataPoint objects here!
+        }
+
+        return dataset;
+    }
+
+    public static List<DataPoint> loadMNistData(String filepath) {
+        String data = normalizeLineBreaks(readFileAsString(filepath));
+        String[] lines = data.split("\n");
+
+        // create storage for data
+        ArrayList<DataPoint> dataset = new ArrayList<>();
 
         for (int a = 0; a < lines.length; a++) {
              /* TODO:
