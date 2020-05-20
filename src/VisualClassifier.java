@@ -63,6 +63,7 @@ public class VisualClassifier extends PApplet {
         for (int r = 0; r < 28; r++) {
             for (int c = 0; c < 28; c++) {
                 pixels[r][c] = (short)(featureVector[nextLocToCopy]);
+                nextLocToCopy++;
             }
         }
 
