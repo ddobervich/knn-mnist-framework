@@ -5,7 +5,7 @@ public class TestClassifier {
         Classifier classifier;
         String prediction = "";
 
-        classifier = new Classifier(5);
+        classifier = new Classifier(3);
         List<DataPoint> training = DataLoader.loadMNistData("mnist_train.csv");
         List<DataPoint> test = DataLoader.loadMNistData("mnist_test.csv");
         classifier.addTrainingData(training);

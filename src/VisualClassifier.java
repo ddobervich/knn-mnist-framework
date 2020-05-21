@@ -20,7 +20,7 @@ public class VisualClassifier extends PApplet {
         dy = (float) DISPLAY_HEIGHT / IMAGE_HEIGHT;
         fillWithColor(pixels, (short) 255);
 
-        classifier = new Classifier(10);
+        classifier = new Classifier(3);
         List<DataPoint> training = DataLoader.loadMNistData("mnist_train.csv");
         test = DataLoader.loadMNistData("mnist_test.csv");
         classifier.addTrainingData(training);
