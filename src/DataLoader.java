@@ -34,6 +34,7 @@ public class DataLoader {
     }
 
     public static List<DataPoint> loadHeartDiseaseData(String filepath) {
+        /* NOTE:  THIS IS ONLY FOR LOADING HEART DISEASE DATA; NOT FOR HAND-WRITTEN DIGIT RECOGNITION */
         String data = normalizeLineBreaks(readFileAsString(filepath));
         String[] lines = data.split("\n");
 
@@ -70,15 +71,9 @@ public class DataLoader {
                     split line by , to get all coordinates
 
                     get the correct label for this data point (the first number in the array).
+                    create a double array for all of the other pixel values (starting at index 1)
 
-                    create a 28 x 28 2d array of short
-
-                    fill the 2d array.  First 28 shorts starting at index 1 are row 0, next 28 shorts are row 1, etc.
-
-                    Run the DImage constructor to create a new DImage that's 28 by 28
-                    Run the .setPixels method to set its pixels.
-
-                    Run the DataPoint constructor, giving it the correct label and the DImage
+                    Run the DataPoint constructor, giving it the correct label and the double[]
 
                     Add the DataPoint to your dataset list.
          */
