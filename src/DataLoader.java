@@ -73,7 +73,10 @@ public class DataLoader {
             String label = values[0];
             double[] featureVector = new double[values.length-1];
             for (int i = 0; i < featureVector.length; i++) {
-                featureVector[i] = Double.parseDouble(values[i+1]);
+                double grayValue = Double.parseDouble(values[i+1]);
+                featureVector[i] = 255 - grayValue;                     // color reverse so background is white
+                                                                        // this will let our interactive classifier
+                                                                        // run better.
             }
             DataPoint point = new DataPoint(label, featureVector);
             dataset.add(point);
