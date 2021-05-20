@@ -1,10 +1,8 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class DataLoader {
 
@@ -18,19 +16,24 @@ public class DataLoader {
     }
 
     public static String readFileAsString(String filepath) {
-        ClassLoader classLoader = DataLoader.class.getClassLoader();
-        File file = new File(classLoader.getResource(filepath).getFile());
-
-        // Read File Content
-        String content = "";
+        Scanner scanner = null;
         try {
-            content = new String(Files.readAllBytes(file.toPath()));
-        } catch (IOException e) {
-            System.err.println("FILE NOT FOUND: " + filepath);
+            scanner = new Scanner( new File(filepath) );
+            String text = scanner.useDelimiter("\\A").next();
+            return text;
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            if (scanner != null)
+                scanner.close(); // Put this call in a finally block
         }
 
-        return content;
+        System.err.println("-------------------------------------------------------");
+        System.err.println("There was an error reading your data file: " + filepath);
+        System.err.println("Check the file path!");
+        System.err.println("-------------------------------------------------------");
+
+        return null;
     }
 
     public static List<DataPoint> loadHeartDiseaseData(String filepath) {

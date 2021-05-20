@@ -21,11 +21,18 @@ public class VisualClassifier extends PApplet {
         fillWithColor(pixels, (short) 255);
 
         classifier = new Classifier(3);
-        List<DataPoint> training = DataLoader.loadMNistData("mnist_train.csv");
-        test = DataLoader.loadMNistData("mnist_test.csv");
+        List<DataPoint> training = DataLoader.loadMNistData("data/mnist_train.csv");
+        test = DataLoader.loadMNistData("data/mnist_test.csv");
         classifier.addTrainingData(training);
 
-        DataPoint frame = test.remove((int)Math.random()*test.size());
+        if (test.size() == 0) {
+            System.err.println("-------test data empty!-------");
+        }
+        if (training.size() == 0) {
+            System.err.println("-------- training data empty!-------");
+        }
+
+        DataPoint frame = test.remove((int)(Math.random()*test.size()));
         load(pixels, frame);
     }
 
