@@ -14,11 +14,11 @@ public class Classifier {
     }
 
     public void addTrainingData(List<DataPoint> points) {
-        // TODO: add all points from input to the training data
+        trainingData.addAll(points);
     }
 
     public void addTrainingData(DataPoint point) {
-        // TODO: add all points from input to the training data
+        trainingData.add(point);
     }
 
     public String classify(double[] featureVector) {
