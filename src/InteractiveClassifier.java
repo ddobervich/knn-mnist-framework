@@ -41,9 +41,11 @@ public class InteractiveClassifier extends PApplet {
             addPixels(2);
         }
 
-        fill(0);
+        fill(255, 0, 0);
         stroke(0);
         text("Classifier predicts: " + prediction, 30, DISPLAY_HEIGHT - 30);
+
+        text("Press 'c' to clear", 0, 20);
     }
 
     public void mouseReleased() {
