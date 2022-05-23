@@ -2,8 +2,6 @@ import processing.core.PApplet;
 
 import java.util.List;
 
-import static jdk.nashorn.internal.objects.Global.load;
-
 public class VisualClassifier extends PApplet {
     private static final int DISPLAY_WIDTH = 600;
     private static final int DISPLAY_HEIGHT = 600;
