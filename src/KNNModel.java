@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class Classifier {
+public class KNNModel {
     private ArrayList<DataPoint> trainingData;
     private int n;
 
-    public Classifier(int n) {
+    public KNNModel(int n) {
         this.n = n;
         trainingData = new ArrayList<DataPoint>();
     }

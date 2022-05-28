@@ -1,17 +1,15 @@
-import processing.core.PApplet;
-
 import java.util.List;
 
-public class TestClassifier {
+public class Tester {
     public static void main(String[] args) {
-        Classifier classifier;
+        KNNModel KNNModel;
         String prediction = "";
 
-        classifier = new Classifier(5);
+        KNNModel = new KNNModel(5);
         List<DataPoint> training = DataLoader.createDataSet("mnist_train.csv");
         List<DataPoint> test = DataLoader.createDataSet("mnist_test.csv");
-        classifier.addTrainingData(training);
+        KNNModel.addTrainingData(training);
 
-        classifier.test(test);
+        KNNModel.test(test);
     }
 }

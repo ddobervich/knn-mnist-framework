@@ -2,7 +2,7 @@ import processing.core.PApplet;
 
 import java.util.List;
 
-public class VisualClassifier extends PApplet {
+public class VisualTester extends PApplet {
     private static final int DISPLAY_WIDTH = 600;
     private static final int DISPLAY_HEIGHT = 600;
     private static final int IMAGE_WIDTH = 28;
@@ -10,22 +10,25 @@ public class VisualClassifier extends PApplet {
 
     private short[][] pixels = new short[IMAGE_HEIGHT][IMAGE_WIDTH];
     private float dx, dy;
-    private Classifier classifier;
+    private KNNModel KNNModel;
     private String prediction = "";
     private List<DataPoint> test;
 
-    public void setup() {
+    public void settings() {
         size(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    }
+
+    public void setup() {
         dx = (float) DISPLAY_WIDTH / IMAGE_WIDTH;
         dy = (float) DISPLAY_HEIGHT / IMAGE_HEIGHT;
         fillWithColor(pixels, (short) 255);
 
-        classifier = new Classifier(10);
+        KNNModel = new KNNModel(10);
         List<DataPoint> training = DataLoader.createDataSet("mnist_train.csv");
         test = DataLoader.createDataSet("mnist_test.csv");
-        classifier.addTrainingData(training);
+        KNNModel.addTrainingData(training);
 
-        DataPoint frame = test.remove((int)Math.random()*test.size());
+        DataPoint frame = test.remove((int) Math.random() * test.size());
         load(pixels, frame);
     }
 
@@ -38,7 +41,7 @@ public class VisualClassifier extends PApplet {
             }
         }
 
-        prediction = classifier.classify(pixels);
+        prediction = KNNModel.classify(pixels);
     }
 
     private void fillWithColor(short[][] pixels, short val) {
@@ -82,10 +85,10 @@ public class VisualClassifier extends PApplet {
         return (0 <= r && r < pixels.length) && (0 <= c && c < pixels[0].length);
     }
 
-   public void mouseReleased() {
-       DataPoint frame = test.remove((int)Math.random()*test.size());
-       load(pixels, frame);
-   }
+    public void mouseReleased() {
+        DataPoint frame = test.remove((int) Math.random() * test.size());
+        load(pixels, frame);
+    }
 
     private void clearPixels(short[][] pixels) {
         for (int r = 0; r < pixels.length; r++) {

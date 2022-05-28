@@ -2,7 +2,7 @@ import processing.core.PApplet;
 
 import java.util.List;
 
-public class InteractiveClassifier extends PApplet {
+public class InteractiveTester extends PApplet {
     private static final int DISPLAY_WIDTH = 600;
     private static final int DISPLAY_HEIGHT = 600;
     private static final int IMAGE_WIDTH = 28;
@@ -10,20 +10,23 @@ public class InteractiveClassifier extends PApplet {
 
     private short[][] pixels = new short[IMAGE_HEIGHT][IMAGE_WIDTH];
     private float dx, dy;
-    private Classifier classifier;
+    private KNNModel KNNModel;
     private String prediction = "";
 
-    public void setup() {
+    public void settings() {
         size(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    }
+
+    public void setup() {
         dx = (float) DISPLAY_WIDTH / IMAGE_WIDTH;
         dy = (float) DISPLAY_HEIGHT / IMAGE_HEIGHT;
         fillWithColor(pixels, (short) 255);
 
-        classifier = new Classifier(10);
+        KNNModel = new KNNModel(6);
         List<DataPoint> training = DataLoader.createDataSet("mnist_train.csv");
         List<DataPoint> test = DataLoader.createDataSet("mnist_test.csv");
-        classifier.addTrainingData(training);
-        classifier.addTrainingData(test);
+        KNNModel.addTrainingData(training);
+        KNNModel.addTrainingData(test);
     }
 
     private void fillWithColor(short[][] pixels, short val) {
@@ -38,7 +41,7 @@ public class InteractiveClassifier extends PApplet {
         drawImage(pixels);
 
         if (mousePressed) {
-            addPixels(2);
+            addPixels(1);
         }
 
         fill(0);
@@ -47,7 +50,7 @@ public class InteractiveClassifier extends PApplet {
     }
 
     public void mouseReleased() {
-        prediction = classifier.classify(pixels);
+        prediction = KNNModel.classify(pixels);
     }
 
     private void drawImage(short[][] pixels) {
@@ -67,7 +70,7 @@ public class InteractiveClassifier extends PApplet {
         int r = (int) map(mouseY, 0, DISPLAY_HEIGHT, 0, IMAGE_HEIGHT);
 
         for (int tr = r - n; tr <= r + n; tr++) {
-            for (int tc = c - n ; tc <= c + n; tc++) {
+            for (int tc = c - n; tc <= c + n; tc++) {
                 if (inBounds(tr, tc, pixels)) {
                     pixels[tr][tc] = 0;
                 }
