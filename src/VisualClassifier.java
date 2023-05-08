@@ -119,7 +119,7 @@ public class VisualClassifier extends PApplet {
     }
 
    public void mouseReleased() {
-       DataPoint frame = test.remove((int)Math.random()*test.size());
+       DataPoint frame = test.remove((int)(Math.random()*test.size()));
        load(pixels, frame);
    }
 
