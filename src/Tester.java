@@ -5,9 +5,9 @@ public class Tester {
         KNNModel KNNModel;
         String prediction = "";
 
-        KNNModel = new KNNModel(5);
-        List<DataPoint> training = DataLoader.createDataSet("mnist_train.csv");
-        List<DataPoint> test = DataLoader.createDataSet("mnist_test.csv");
+        KNNModel = new KNNModel(1);
+        List<DataPoint> training = DataLoader.createDataSet("data/mnist_train.csv");
+        List<DataPoint> test = DataLoader.createDataSet("data/mnist_test.csv");
         KNNModel.addTrainingData(training);
 
         KNNModel.test(test);

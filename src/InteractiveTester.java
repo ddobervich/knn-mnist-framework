@@ -23,8 +23,8 @@ public class InteractiveTester extends PApplet {
         fillWithColor(pixels, (short) 255);
 
         KNNModel = new KNNModel(6);
-        List<DataPoint> training = DataLoader.createDataSet("mnist_train.csv");
-        List<DataPoint> test = DataLoader.createDataSet("mnist_test.csv");
+        List<DataPoint> training = DataLoader.createDataSet("data/mnist_train.csv");
+        List<DataPoint> test = DataLoader.createDataSet("data/mnist_test.csv");
         KNNModel.addTrainingData(training);
         KNNModel.addTrainingData(test);
     }
@@ -98,6 +98,6 @@ public class InteractiveTester extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main("InteractiveClassifier");
+        PApplet.main("InteractiveTester");
     }
 }

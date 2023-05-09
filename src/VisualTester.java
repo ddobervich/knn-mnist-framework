@@ -24,11 +24,11 @@ public class VisualTester extends PApplet {
         fillWithColor(pixels, (short) 255);
 
         KNNModel = new KNNModel(10);
-        List<DataPoint> training = DataLoader.createDataSet("mnist_train.csv");
-        test = DataLoader.createDataSet("mnist_test.csv");
+        List<DataPoint> training = DataLoader.createDataSet("data/mnist_train.csv");
+        test = DataLoader.createDataSet("data/mnist_test.csv");
         KNNModel.addTrainingData(training);
 
-        DataPoint frame = test.remove((int) Math.random() * test.size());
+        DataPoint frame = test.remove((int)(Math.random() * test.size()));
         load(pixels, frame);
     }
 
@@ -99,6 +99,6 @@ public class VisualTester extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main("VisualClassifier");
+        PApplet.main("VisualTester");
     }
 }

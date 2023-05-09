@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -10,20 +12,24 @@ public class DataLoader {
         return s.replace("\r\n", "\n").replace('\r', '\n');
     }
 
-    public static String readFileAsString(String filepath) {
-        ClassLoader classLoader = DataLoader.class.getClassLoader();
-
-        // Read File Content
-        String content = "";
+    public static String readFileAsString(String filePath) {
         try {
-            File file = new File(classLoader.getResource(filepath).getFile());
-            content = new String(Files.readAllBytes(file.toPath()));
-        } catch (Exception e) {
-            System.err.println("FILE NOT FOUND: " + filepath);
-            e.printStackTrace();
+            StringBuilder stringBuilder = new StringBuilder();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(System.lineSeparator());
+            }
+
+            bufferedReader.close();
+            return stringBuilder.toString();
+        } catch (IOException e) {
+            System.out.println("Error reading the file: " + filePath);
         }
 
-        return content;
+        return null;
     }
 
     public static List<DataPoint> createDataSet(String filepath) {
