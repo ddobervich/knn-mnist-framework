@@ -7,10 +7,12 @@ public class VisualClassifier extends PApplet {
     private static final int DISPLAY_HEIGHT = 600;
     private static final int IMAGE_WIDTH = 28;
     private static final int IMAGE_HEIGHT = 28;
+    private static final String TRAINING_DATA_PATH = "data/mnist_train.csv";
+    private static final String TEST_DATA_PATH = "data/mnist_test.csv";
 
     private short[][] pixels = new short[IMAGE_HEIGHT][IMAGE_WIDTH];
     private float dx, dy;
-    private Classifier classifier;
+    private KNNClassifier classifier;
     private String prediction = "";
     private List<DataPoint> test;
 
@@ -20,10 +22,10 @@ public class VisualClassifier extends PApplet {
         dy = (float) DISPLAY_HEIGHT / IMAGE_HEIGHT;
         fillWithColor(pixels, (short) 255);
 
-        classifier = new Classifier(3);
-        List<DataPoint> training = DataLoader.loadMNistData("data/mnist_train.csv");
-        test = DataLoader.loadMNistData("data/mnist_test.csv");
-        classifier.addTrainingData(training);
+        classifier = new KNNClassifier(3);
+        List<DataPoint> training = DataLoader.loadMNistData(TRAINING_DATA_PATH);
+        test = DataLoader.loadMNistData(TEST_DATA_PATH);
+        classifier.trainOnData(training);
 
         if (test.size() == 0) {
             System.err.println("-------test data empty!-------");
@@ -119,7 +121,7 @@ public class VisualClassifier extends PApplet {
     }
 
    public void mouseReleased() {
-       DataPoint frame = test.remove((int)Math.random()*test.size());
+       DataPoint frame = test.remove((int)(Math.random()*test.size()));
        load(pixels, frame);
    }
 

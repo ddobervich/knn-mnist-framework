@@ -1,23 +1,20 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
-public class Classifier {
+public class KNNClassifier {
     private ArrayList<DataPoint> trainingData;
     private int k;
 
-    public Classifier(int k) {
+    public KNNClassifier(int k) {
         this.k = k;
         trainingData = new ArrayList<DataPoint>();
     }
 
-    public void addTrainingData(List<DataPoint> points) {
+    public void trainOnData(List<DataPoint> points) {
         trainingData.addAll(points);
     }
 
-    public void addTrainingData(DataPoint point) {
+    public void trainOnData(DataPoint point) {
         trainingData.add(point);
     }
 
@@ -29,13 +26,13 @@ public class Classifier {
         return "no prediction";  // replace this line
     }
 
-    public double distance(double[] d1, double[] d2) {
+    public static double distance(double[] d1, double[] d2) {
         // TODO:  Use the n-dimensional Euclidean distance formula to find the distance between d1 and d2
 
         return -1;
     }
 
-    public void test(List<DataPoint> test) {
+    public void testOnData(List<DataPoint> test) {
         ArrayList<DataPoint> correct = new ArrayList<>();
         ArrayList<DataPoint> wrong = new ArrayList<>();
 

@@ -3,17 +3,17 @@ import java.util.List;
 
 public class TestHeartDiseaseClassifier {
     public static void main(String[] args) {
-        Classifier classifier;
+        KNNClassifier classifier;
         String prediction = "";
 
-        classifier = new Classifier(5);
+        classifier = new KNNClassifier(5);
         List<DataPoint> allData = DataLoader.loadHeartDiseaseData("data/heart.csv");
         List<DataPoint> training = new ArrayList<>();
         List<DataPoint> test = new ArrayList<>();
         DataLoader.splitDataIntoTrainingAndTest(allData, training, test, .6);
 
-        classifier.addTrainingData(training);
+        classifier.trainOnData(training);
 
-        classifier.test(test);
+        classifier.testOnData(test);
     }
 }
