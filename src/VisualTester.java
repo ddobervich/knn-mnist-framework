@@ -93,8 +93,8 @@ public class VisualTester extends PApplet {
     public void draw() {
         drawImage(pixels);
 
-        fill(255);
-        stroke(255);
+        fill(255, 0, 0);
+        stroke(0);
         text("Classifier predicts: " + prediction, 30, DISPLAY_HEIGHT - 30);
     }
 
