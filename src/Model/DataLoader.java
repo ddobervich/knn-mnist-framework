@@ -69,8 +69,7 @@ public class DataLoader {
         }
 
         for (int i = 0; i < num; i++) {
-            String line = lines.get(i);
-            if (i % 1000 == 0) System.out.println("i:" + i);
+            String line = lines.remove(0);
 
             String[] values = line.split(",");
             String label = values[0];
