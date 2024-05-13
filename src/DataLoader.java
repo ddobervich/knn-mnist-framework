@@ -68,18 +68,18 @@ public class DataLoader {
         // create storage for data
         ArrayList<DataPoint> dataset = new ArrayList<>();
 
-        for (int a = 0; a < lines.length; a++) {
-             /* TODO:
-                For each line in the lines array:
-                    split line by , to get all coordinates
-
-                    get the correct label for this data point (the first number in the array).
-                    create a double array for all of the other pixel values (starting at index 1)
-
-                    Run the DataPoint constructor, giving it the correct label and the double[]
-
-                    Add the DataPoint to your dataset list.
-         */
+        for (String line : lines) {
+            String[] values = line.split(",");
+            String label = values[0];
+            double[] featureVector = new double[values.length-1];
+            for (int i = 0; i < featureVector.length; i++) {
+                double grayValue = Double.parseDouble(values[i+1]);
+                featureVector[i] = 255 - grayValue;                     // color reverse so background is white
+                                                                        // this will let our interactive classifier
+                                                                        // run better.
+            }
+            DataPoint point = new DataPoint(label, featureVector);
+            dataset.add(point);
         }
 
         return dataset;

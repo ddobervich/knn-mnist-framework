@@ -10,7 +10,7 @@ public class InteractiveClassifier extends PApplet {
 
     private short[][] pixels = new short[IMAGE_HEIGHT][IMAGE_WIDTH];
     private float dx, dy;
-    private Classifier classifier;
+    private KNNClassifier classifier;
     private String prediction = "";
 
     public void setup() {
@@ -19,11 +19,11 @@ public class InteractiveClassifier extends PApplet {
         dy = (float) DISPLAY_HEIGHT / IMAGE_HEIGHT;
         fillWithColor(pixels, (short) 255);
 
-        classifier = new Classifier(3);
+        classifier = new KNNClassifier(3);
         List<DataPoint> training = DataLoader.loadMNistData("data/mnist_train.csv");
         List<DataPoint> test = DataLoader.loadMNistData("data/mnist_test.csv");
-        classifier.addTrainingData(training);
-        classifier.addTrainingData(test);
+        classifier.trainOnData(training);
+        classifier.trainOnData(test);
     }
 
     private void fillWithColor(short[][] pixels, short val) {
@@ -41,9 +41,11 @@ public class InteractiveClassifier extends PApplet {
             addPixels(2);
         }
 
-        fill(0);
+        fill(255, 0, 0);
         stroke(0);
         text("Classifier predicts: " + prediction, 30, DISPLAY_HEIGHT - 30);
+
+        text("Press 'c' to clear", 0, 20);
     }
 
     public void mouseReleased() {
