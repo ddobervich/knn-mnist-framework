@@ -23,15 +23,30 @@ public class KNNClassifier {
     public String classify(double[] featureVector) {
         if (trainingData.size() == 0) return "no training data";
 
-        // TODO: write a k-nearest-neighbor classifier.  Return its prediction of "0" to "9"
+        ArrayList<DataPoint> closestN = new ArrayList<>();
+        ArrayList<Double> distances = new ArrayList<>();
 
-        return "no prediction";  // replace this line
+        double closestDist = Double.MAX_VALUE;
+        DataPoint closestPoint = null;
+
+        for (DataPoint p : trainingData) {
+            double dist = distance(featureVector, p.getData());
+            if (dist < closestDist) {
+                dist = closestDist;
+                closestPoint = p;
+            }
+        }
+
+        return closestPoint.getLabel();
     }
 
     public static double distance(double[] d1, double[] d2) {
-        // TODO:  Use the n-dimensional Euclidean distance formula to find the distance between d1 and d2
-
-        return -1;
+        double dist = 0;
+        for (int i = 0; i < d1.length; i++) {
+            double diff = d1[i] - d2[i];
+            dist += diff*diff;
+        }
+        return Math.sqrt(dist);
     }
 
     public void testOnData(List<DataPoint> test) {
