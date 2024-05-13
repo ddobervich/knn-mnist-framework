@@ -61,6 +61,10 @@ public class DataLoader {
         if (num == -1) {
             num = lines.size();
         } else {
+            if (num > lines.size()) {
+                System.err.println("warning: specified n of " + num + " is larger than data set size of " + lines.size());
+                num = lines.size();
+            }
             lines.subList(num, lines.size()).clear();
         }
 
