@@ -1,22 +1,11 @@
 package Model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class DataLoader {
-
-    private static String normalizeLineBreaks(String s) {
-        s= s.replace('\u00A0',' '); // remove non-breaking whitespace characters
-        s= s.replace('\u2007',' ');
-        s= s.replace('\u202F',' ');
-        s= s.replace('\uFEFF',' ');
-
-        return s.replace("\r\n", "\n").replace('\r', '\n');
-    }
 
     public static List<String> readFileAsStrings(String filepath) {
         try {
