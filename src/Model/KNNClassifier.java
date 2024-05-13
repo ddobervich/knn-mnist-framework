@@ -35,23 +35,30 @@ public class KNNClassifier {
     }
 
     public void testOnData(List<DataPoint> test) {
+        testOnData(test, 1);
+    }
+
+    public void testOnData(List<DataPoint> test, int outputFreq) {
         ArrayList<DataPoint> correct = new ArrayList<>();
         ArrayList<DataPoint> wrong = new ArrayList<>();
+
+        if (outputFreq < 1) outputFreq = test.size();
 
         int i = 0;
         for (DataPoint p : test) {
             String predict = classify(p.getData());
-            System.out.print("#" + i + " REAL:\t" + p.getLabel() + " predicted:\t" + predict);
+            if (i % outputFreq == 0)
+                System.out.print("#" + i + " REAL:\t" + p.getLabel() + " predicted:\t" + predict);
             if (predict.equals(p.getLabel())) {
                 correct.add(p);
-                System.out.print(" Correct ");
+                if (i % outputFreq == 0) System.out.print(" Correct ");
             } else {
                 wrong.add(p);
-                System.out.print(" WRONG ");
+                if (i % outputFreq == 0) System.out.print(" WRONG ");
             }
 
             i++;
-            System.out.println(" % correct: " + ((double) correct.size() / i));
+            if (i % outputFreq == 0) System.out.println(" % correct: " + ((double) correct.size() / i));
         }
 
         System.out.println(correct.size() + " correct out of " + test.size());
