@@ -32,7 +32,7 @@ public class KNNClassifier {
         for (DataPoint p : trainingData) {
             double dist = distance(featureVector, p.getData());
             if (dist < closestDist) {
-                dist = closestDist;
+                closestDist = dist;
                 closestPoint = p;
             }
         }
