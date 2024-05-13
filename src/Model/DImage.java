@@ -1,7 +1,6 @@
-import processing.core.PImage;
+package Model;
 
-import java.awt.*;
-import java.util.Arrays;
+import processing.core.PImage;
 
 public class DImage {
     private PImage img;

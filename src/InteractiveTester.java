@@ -1,12 +1,17 @@
+import Model.DataLoader;
+import Model.DataPoint;
+import Model.KNNClassifier;
 import processing.core.PApplet;
 
 import java.util.List;
 
-public class InteractiveClassifier extends PApplet {
+public class InteractiveTester extends PApplet {
     private static final int DISPLAY_WIDTH = 600;
     private static final int DISPLAY_HEIGHT = 600;
     private static final int IMAGE_WIDTH = 28;
     private static final int IMAGE_HEIGHT = 28;
+    private static final String TRAINING_DATA_PATH = "data/mnist_train.csv";
+    private static final String TEST_DATA_PATH = "data/mnist_test.csv";
 
     private short[][] pixels = new short[IMAGE_HEIGHT][IMAGE_WIDTH];
     private float dx, dy;
@@ -20,8 +25,8 @@ public class InteractiveClassifier extends PApplet {
         fillWithColor(pixels, (short) 255);
 
         classifier = new KNNClassifier(3);
-        List<DataPoint> training = DataLoader.loadMNistData("data/mnist_train.csv");
-        List<DataPoint> test = DataLoader.loadMNistData("data/mnist_test.csv");
+        List<DataPoint> training = DataLoader.loadMNistData(TRAINING_DATA_PATH);
+        List<DataPoint> test = DataLoader.loadMNistData(TEST_DATA_PATH);
         classifier.trainOnData(training);
         classifier.trainOnData(test);
     }
@@ -110,6 +115,6 @@ public class InteractiveClassifier extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main("InteractiveClassifier");
+        PApplet.main("InteractiveTester");
     }
 }

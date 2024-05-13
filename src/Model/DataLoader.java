@@ -1,7 +1,7 @@
+package Model;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.*;
 
 public class DataLoader {
@@ -45,7 +45,7 @@ public class DataLoader {
         ArrayList<DataPoint> dataset = new ArrayList<>();
 
         for (int a = 0; a < lines.length; a++) {
-            // TODO: create DataPoint objects here!
+            // TODO: create Model.DataPoint objects here!
         }
 
         return dataset;

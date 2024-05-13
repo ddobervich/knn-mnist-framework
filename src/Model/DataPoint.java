@@ -1,3 +1,5 @@
+package Model;
+
 public class DataPoint {
     private String label;
     private double[] data;

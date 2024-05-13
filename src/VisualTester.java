@@ -1,8 +1,11 @@
+import Model.DataLoader;
+import Model.DataPoint;
+import Model.KNNClassifier;
 import processing.core.PApplet;
 
 import java.util.List;
 
-public class VisualClassifier extends PApplet {
+public class VisualTester extends PApplet {
     private static final int DISPLAY_WIDTH = 600;
     private static final int DISPLAY_HEIGHT = 600;
     private static final int IMAGE_WIDTH = 28;
@@ -134,6 +137,6 @@ public class VisualClassifier extends PApplet {
     }
 
     public static void main(String[] args) {
-        PApplet.main("VisualClassifier");
+        PApplet.main("VisualTester");
     }
 }

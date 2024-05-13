@@ -1,6 +1,10 @@
+import Model.DataLoader;
+import Model.DataPoint;
+import Model.KNNClassifier;
+
 import java.util.List;
 
-public class TestClassifier {
+public class Tester {
     public static void main(String[] args) {
         KNNClassifier classifier;
         String prediction = "";
