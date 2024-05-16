@@ -48,7 +48,7 @@ public class KNNClassifier {
         for (DataPoint p : test) {
             String predict = classify(p.getData());
             if (i % outputFreq == 0)
-                System.out.print("#" + i + " REAL:\t" + p.getLabel() + " predicted:\t" + predict);
+                System.out.print("#" + i + " predicted label:" + predict + "\t actual label:" + p.getLabel() + " prediction ===> " );
             if (predict.equals(p.getLabel())) {
                 correct.add(p);
                 if (i % outputFreq == 0) System.out.print(" Correct ");
@@ -58,11 +58,11 @@ public class KNNClassifier {
             }
 
             i++;
-            if (i % outputFreq == 0) System.out.println(" % correct: " + ((double) correct.size() / i));
+            if (i % outputFreq == 0) System.out.println("% correct: " + ((double) correct.size() / i)*100);
         }
 
         System.out.println(correct.size() + " correct out of " + test.size());
         System.out.println(wrong.size() + " wrong out of " + test.size());
-        System.out.println("% Error: " + (double) wrong.size() / test.size());
+        System.out.println("% Error: " + (double) 100*wrong.size() / test.size());
     }
 }
