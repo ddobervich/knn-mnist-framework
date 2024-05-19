@@ -10,7 +10,7 @@ public class Tester {
         String prediction = "";
 
         classifier = new KNNClassifier(3);
-        List<DataPoint> training = DataLoader.loadMNistData("data/mnist_train.csv");
+        List<DataPoint> training = DataLoader.loadMNistData("data/mnist_train.csv", 100);
         List<DataPoint> test = DataLoader.loadMNistData("data/mnist_test.csv");
         classifier.trainOnData(training);
 
